@@ -19,58 +19,34 @@ describe('Utils - transformer toOIHPerson', () => {
       recordUid: 36,
     };
 
-    const msg = {
-      recordUid: data.recordUid,
-      operation: '',
-      applicationUid: 'appUid not set yet',
-      body: {
-        meta: {
-          iamToken: 'someToken',
-          domainId: 'domainId',
-          schema: 'someSchema',
-        },
-      },
-    };
-
-    const person = await toOIHPerson(msg, data);
+    const person = await toOIHPerson(data);
     // console.log(JSON.stringify(person));
     expect(person).to.be.an('object');
 
     expect(person).to.deep.equal({
-      meta: {
-        recordUid: 36,
-        applicationUid: 'appUid not set yet',
-        iamToken: 'someToken',
-        operation: '',
-        domainId: 'domainId',
-        schema: 'someSchema',
-      },
-      data: {
-        firstName: 'John',
-        lastName: 'Doe',
-        position: '',
-        title: '',
-        photo: '',
-        jobTitle: '',
-        salutation: '',
-        gender: '',
-        birthday: '',
-        displayName: '',
-        middleName: '',
-        nickname: '',
-        contactData: [{
-          type: 'email',
-          value: 'Google',
-        }],
-        addresses: [],
-      },
+      firstName: 'John',
+      lastName: 'Doe',
+      position: '',
+      title: '',
+      photo: '',
+      jobTitle: '',
+      salutation: '',
+      gender: '',
+      birthday: '',
+      displayName: '',
+      middleName: '',
+      nickname: '',
+      contactData: [{
+        type: 'email',
+        value: 'Google',
+      }],
+      addresses: [],
     });
   });
 
   it('should not crash if transform is missing data', async () => {
-    const msg = {};
     const data = {};
-    const person = await toOIHPerson(msg, data);
+    const person = await toOIHPerson(data);
     expect(person).to.equal(false);
   });
 });
