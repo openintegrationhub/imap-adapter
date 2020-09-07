@@ -1,0 +1,70 @@
+{
+  "title": "IMAP",
+  "description": "IMAP OIH Adapter",
+  "docsUrl": "https://github.com/openintegrationhub/imap-adapter",
+  "buildType": "docker",
+  "credentials": {
+    "fields": {
+      "user": {
+        "label": "Your Email-Address",
+        "required": true,
+        "viewClass": "TextFieldView",
+        "note": "Use the email address of the mail account you want to access",
+        "placeholder": "youremail@examplemail.com"
+      },
+      "password": {
+        "label": "Your password",
+        "required": true,
+        "viewClass": "PasswordFieldView",
+        "note": "Use the password for your email account"
+      },
+      "host": {
+        "label": "host",
+        "required": true,
+        "viewClass": "TextFieldView",
+        "note": "IMAP Endpoint of the email provider imap.examplemail.com"
+      },
+      "port": {
+        "label": "port",
+        "required": true,
+        "viewClass": "TextFieldView",
+        "note": "IMAP port of the email provider",
+        "placeholder": "993"
+      },
+      "tls": {
+        "label": "tls",
+        "required": true,
+        "viewClass": "TextFieldView",
+        "note": "Either true for encrypted tls IMAP or false for unsafe IMAP",
+        "placeholder": "true"
+      },
+      "schema": {
+        "label": "Schema",
+        "required": false,
+        "viewClass": "TextFieldView",
+        "note": "Schema from Meta Data Repository",
+        "placeholder": "address"
+      },
+      "domainId": {
+        "label": "Domain Id",
+        "required": false,
+        "viewClass": "TextFieldView",
+        "note": "Domain Id from Meta Data Repository",
+        "placeholder": "5d3031a20cbe7c00115c7d8f"
+      }
+    }
+  },
+  "triggers": {
+    "getMailHeaderPolling": {
+      "title": "Fetch Email header data",
+      "description": "Fetch header data from new emails and send in OIH person format",
+      "type": "polling",
+      "main": "./lib/triggers/getMailHeaderPolling.js",
+      "metadata": {
+        "out": "./lib/schemas/getMailHeader.out.json"
+      }
+    }
+  },
+  "actions": {
+  }
+}
