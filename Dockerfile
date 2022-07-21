@@ -1,5 +1,5 @@
 FROM node:10-alpine
-LABEL NAME="snazzy-contacts-adapter"
+LABEL NAME="imap-adapter"
 LABEL MAINTAINER Johannes Knoop "jknoop@wice.de"
 LABEL SUMMARY="This image is used to start the IMAP Adapter for OIH"
 
